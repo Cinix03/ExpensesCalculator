@@ -1,3 +1,7 @@
+use serde::{Deserialize, Serialize};
+use getset::{Getters, Setters};
+use crate::model::user::User;
+#[derive(Serialize, Deserialize, Debug, Getters, Setters)]
 pub struct Expense {
     #[getset(get = "pub", set = "pub")]
     description: String,
@@ -6,16 +10,16 @@ pub struct Expense {
     #[getset(get = "pub", set = "pub")]
     date: String,
     #[getset(get = "pub", set = "pub")]
-    user: User
+    user: User,
 }
 
 impl Expense {
-    fn new(description: &str, amount: f64, date: &str, user: User) -> Self {
+    pub fn new(description: &str, amount: f64, date: &str, user: User) -> Self {
         Expense {
             description: description.to_string(),
             amount,
             date: date.to_string(),
-            user: user,
+            user,
         }
     }
 }

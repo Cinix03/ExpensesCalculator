@@ -1,3 +1,7 @@
+use serde::{Deserialize, Serialize};
+use getset::{Getters, Setters};
+
+#[derive(Serialize, Deserialize, Debug, Getters, Setters)]
 pub struct User {
     #[getset(get = "pub", set = "pub")]
     name: String,
@@ -8,7 +12,7 @@ pub struct User {
 }
 
 impl User {
-    fn new(name: &str, username: &str, password: &str) -> Self {
+    pub fn new(name: &str, username: &str, password: &str) -> Self {
         User {
             name: name.to_string(),
             username: username.to_string(),
